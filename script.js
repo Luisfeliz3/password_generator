@@ -2,7 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function start() {
-   console.log("we're here!");
+   console.log("Password Generated");
    var password = generatePassword();
    var passwordText = document.querySelector("#password");
    passwordText.value = password;
@@ -101,32 +101,38 @@ function generatePassword() {
 
    // ======= functions definition ======
   function getUserOptions() {
-    var isUserReaady = confirm("Hello Are you ready for the password process ?");
+    var isUserReady = confirm("Hello Are you ready for the password process ?");
     
 
-    if (isUserReaady) {
+    if (isUserReady) {
       var length = prompt("How many chratcers do you want your password to have ?");
       var passwordLength = parseInt(length);
-      console.log(passwordLength);
+      userOptionalChars.push(passwordLength);
+   
       var upperCase = confirm("Does your password to include Upper Case Characters ?");
+      userOptionalChars.push(upperCase);
+
+     
+      var lowerCase = confirm("Does your password to include Lower Case Characters ?");
+      userOptionalChars.push(lowerCase);
+
+
       var specialCase = confirm("Does your password to include Special Case Characters ?");
+      userOptionalChars.push(specialCase);
+
       var numeric = confirm("Does your password to include Numeric Characters ?");
+      userOptionalChars.push(numeric);
 
     }
-    if (!isUserReaady) {
+    if (!isUserReady) {
       alert("Come back when you are ready for a new pass word");
     }
-    else if (upperCase === false || specialCase === false || numeric === false) {
-      alert("Sorry Your Password Does not meet the requirements, Please make sure to add all requirements!");
+    else if (upperCase === false || specialCase === false || numeric === false || lowerCase === false) {
+      alert("Password needs at least one requirement");
     }
 
-    var userOptions = {
-      "upperCase": upperCase,
-      "specialCase": specialCase,
-      "numeric": numeric
-    }
-    return generatePassword(userOptions);
-
+  
+    return generatePassword(userOptionalChars);
   }
 
       // get user options and store in vars
@@ -138,10 +144,35 @@ function generatePassword() {
       // check that at least one is true
         // else - alert user
     
-    function generatePassword(userOptions) {
+  function generatePassword(userOptions) {
 
-      console.log(userOptions)
-      var password = [];
+ 
+    var password = [];
+    
+for (let index = 0; index < userOptions[0]; index++) {
+
+  if (userOptions[1] === true) {
+      const upperCase = Math.floor(Math.random() * upperCasedCharacters.length);
+      password.push(upperCasedCharacters[upperCase]);
+      userOptions[0]--;
+    }
+    if (userOptions[2] === true) {
+      const lowerCase = Math.floor(Math.random() * lowerCasedCharacters.length);
+      password.push(lowerCasedCharacters[lowerCase]);
+      userOptions[0]--;
+    }
+    if (userOptions[3] === true) {
+      const specialCase = Math.floor(Math.random() * specialCharacters.length);
+      password.push(specialCharacters[specialCase]);
+      userOptions[0]--;  
+    }
+    if (userOptions[4] === true) {
+      const numeric = Math.floor(Math.random() * numericCharacters.length);
+      password.push(numericCharacters[numeric]);
+      userOptions[0]--;
+    }
+
+
       // if lower
         // push a random lower char to password
         // add lowerCharsArray to userOptionalChars
@@ -150,6 +181,7 @@ function generatePassword() {
         // add upperCharsArray to userOptionalChars
       // if special
         // push a random special char to password
+      
         // add specialCharsArray to userOptionalChars
       // if numeric
         // push a random numeric char to password
@@ -157,7 +189,9 @@ function generatePassword() {
       // for loop between start number of elemnts in password to the requested number of charactars
       // mutate the array to a string
       // return password string
-    }
+    } 
+    console.log(password.join(' ')); 
+  }
    // ======= functions calls (start) ======
     getUserOptions();
   
