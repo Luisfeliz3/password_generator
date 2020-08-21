@@ -159,7 +159,7 @@ function generatePassword() {
     }
 
     var passwordText = document.querySelector("#password");
-    return (passwordText.outerHTML = password.join(' '));
+    return (passwordText.innerHTML = password.join(' '));
 
   }
   // ======= functions calls (start) ======
