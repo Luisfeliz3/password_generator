@@ -102,10 +102,11 @@ function generatePassword() {
   // ======= functions definition ======
   function getUserOptions() {
     var isUserReady = confirm("Hello Are you ready for the password process ?");
-    if (isUserReady) {
-      var length = prompt("How many chratcers do you want your password to have ?");
-      var passwordLength = parseInt(length);
-      userOptionalChars.push(passwordLength);
+    var length = prompt("How many chratcers do you want your password to have ?");
+    var passwordLength = parseInt(length);
+    userOptionalChars.push(passwordLength);
+
+    if (isUserReady && passwordLength >= 8 && passwordLength <= 128) {
       var upperCase = confirm("Does your password to include Upper Case Characters ?");
       userOptionalChars.push(upperCase);
       var lowerCase = confirm("Does your password to include Lower Case Characters ?");
@@ -115,8 +116,11 @@ function generatePassword() {
       var numeric = confirm("Does your password to include Numeric Characters ?");
       userOptionalChars.push(numeric);
     }
+    if (passwordLength < 8 || passwordLength >128) {
+      alert("Password Characters can only be greater than 8 and less Than 128!");
+    }
     if (!isUserReady) {
-      alert("Come back when you are ready for a new pass word");
+      alert("Seems Your not ready for a new Password");
     }
     else if (upperCase === false && specialCase === false && numeric === false && lowerCase === false) {
       alert("Password Generator has to meet one requirement of : Upper, Lower, special or numeric");
@@ -160,6 +164,7 @@ function generatePassword() {
   }
   // ======= functions calls (start) ======
   getUserOptions();
+
 
 
 }
