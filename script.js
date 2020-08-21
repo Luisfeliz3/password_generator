@@ -117,17 +117,18 @@ function generatePassword() {
       userOptionalChars.push(numeric);
     }
     if (passwordLength < 8 || passwordLength >128) {
-      alert("Password Characters can only be greater than 8 and less Than 128!");
+      alert("Password Characters can only be greater than 8 and less Than 128! TRY AGAIN!");
     }
+    
     if (!isUserReady) {
       alert("Seems Your not ready for a new Password");
     }
     else if (upperCase === false && specialCase === false && numeric === false && lowerCase === false) {
-      alert("Password Generator has to meet one requirement of : Upper, Lower, special or numeric");
+      alert("Password Generator has to meet one requirement of : Upper, Lower, special or numeric TRY AGAIN!");
     }
     return generatePassword(userOptionalChars);
   }
-
+ 
 
   function generatePassword(userOptions) {
     var password = [];
@@ -164,6 +165,7 @@ function generatePassword() {
   }
   // ======= functions calls (start) ======
   getUserOptions();
+
 
 
 
