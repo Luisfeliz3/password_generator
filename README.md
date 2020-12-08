@@ -19,8 +19,13 @@
  <br />
  Check out the App here!:https://luisfeliz3.github.io/password_generator/
 <br />
+
+
+
 ## Usage
  This application will generate a password with requirements.
+
+  
 ## License
 ![badge](https://img.shields.io/badge/license-Open-brightgreen)
   
